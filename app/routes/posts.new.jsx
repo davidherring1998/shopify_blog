@@ -1,17 +1,18 @@
 import { Link, Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
+import { db } from "../utils/db.server";
 
 export const action = async ({ request }) => {
   const form = await request.formData();
   const title = form.get("title");
   const body = form.get("body");
 
-  const field = { title, body };
-  console.log(field);
+  const fields = { title, body };
+  console.log(fields);
 
-  // @todo - submit to database...
+  const post = await db.post.create({ data: fields });
 
-  return redirect("/posts/index");
+  return redirect(`/posts/${post.id}/`);
 };
 
 export default function NewPost() {
@@ -19,7 +20,9 @@ export default function NewPost() {
     <>
       <div className="page-header">
         <h1>New Post</h1>
-        <button className="btn btn-reverse">Back</button>
+        <Link to={"/posts/index"} className="btn btn-reverse">
+          Back
+        </Link>
       </div>
       <div className="page-content">
         <Form method="POST">
@@ -39,6 +42,3 @@ export default function NewPost() {
     </>
   );
 }
-
-// create page-content
-// create form input -> textarea -> button btn btn-block

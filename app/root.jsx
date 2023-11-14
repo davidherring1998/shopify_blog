@@ -1,7 +1,14 @@
-import { Link, Links, LiveReload, Meta, Outlet } from "@remix-run/react";
-import globalStyles from "~/styles/global.css";
+import {
+  Link,
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  useRouteError,
+} from "@remix-run/react";
+import sylesGlobal from "~/styles/global.css";
 
-export const links = () => [{ rel: "stylesheet", href: globalStyles }];
+export const links = () => [{ rel: "stylesheet", href: sylesGlobal }];
 export const meta = () => {
   const description = "Shopify Coding Blog about Remix built with Remix.";
   const keywords = "Shopify, Remix, Coding, Blog";
@@ -31,6 +38,7 @@ function Document({ children, title }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <Meta />
         <Links />
         <title>{title ? title : "Shopify Coding Blog"}</title>
       </head>
@@ -57,5 +65,19 @@ function Layout({ children }) {
       </nav>
       <div className="container">{children}</div>
     </>
+  );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+  return (
+    <Document>
+      <Layout />
+      <h4>
+        Oh no! An Error has occured, please contact support at
+        support@upsidemicrophones.com
+      </h4>
+    </Document>
   );
 }

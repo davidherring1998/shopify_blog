@@ -25,11 +25,16 @@ p {
 
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1200px;
   margin: auto;
   padding: 0 30px;
 }
 
+.outside--container {
+  width: none;
+  max-width: 2000px;
+  padding: 0;
+}
 .logo {
   font-size: large;
   font-weight: 1000;
@@ -86,6 +91,10 @@ p {
   background: #fff;
   color: #000;
   border-color: #000;
+}
+
+.homepage--btn {
+  margin-top: 30px;
 }
 
 .btn:focus {
@@ -177,6 +186,10 @@ p {
   margin-bottom: 5px;
 }
 
+.homepage--post--list {
+  margin-top: 30px;
+}
+
 .error {
   color: darkred;
 }
@@ -201,4 +214,10 @@ p {
 
 .auth-container fieldset label {
   margin-right: 10px;
+}
+
+.dates {
+  color: #2c2c2c;
+  font-size: 13px;
+  font-family: monospace;
 }
