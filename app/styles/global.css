@@ -25,16 +25,11 @@ p {
 
 .container {
   width: 100%;
-  max-width: 1200px;
-  margin: auto;
+  max-width: 2000px;
+  margin: 0;
   padding: 0 30px;
 }
 
-.outside--container {
-  width: none;
-  max-width: 2000px;
-  padding: 0;
-}
 .logo {
   font-size: large;
   font-weight: 1000;
@@ -47,7 +42,7 @@ p {
   align-items: center;
   margin-bottom: 30px;
   background-color: #f4f4f4;
-  padding: 10px 30px;
+  padding: 20px 30px;
   text-transform: uppercase;
 }
 
@@ -186,7 +181,7 @@ p {
   margin-bottom: 5px;
 }
 
-.homepage--post--list {
+.homepage-post--list {
   margin-top: 30px;
 }
 
@@ -220,4 +215,9 @@ p {
   color: #2c2c2c;
   font-size: 13px;
   font-family: monospace;
+}
+
+/* HERO IMAGE */
+.hero--image{
+
 }

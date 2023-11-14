@@ -55,7 +55,7 @@ function Layout({ children }) {
     <>
       <nav className="navbar">
         <Link to="/" className="logo">
-          Shopify Blog
+          Shopify Coding 
         </Link>
         <ul className="nav">
           <li>
