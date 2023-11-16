@@ -2,6 +2,7 @@ import { Link, Form } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { db } from "../utils/db.server";
 
+// Creating new post form function
 export const action = async ({ request }) => {
   const form = await request.formData();
   const title = form.get("title");

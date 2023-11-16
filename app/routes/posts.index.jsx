@@ -1,7 +1,7 @@
 import { useLoaderData, Link } from "@remix-run/react";
 import { db } from "../utils/db.server";
 
-
+// Getting post list from database 
 export const loader = async () => {
   const data = {
     posts: await db.post.findMany({

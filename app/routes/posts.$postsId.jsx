@@ -2,6 +2,7 @@ import { useLoaderData, Link } from "@remix-run/react";
 import { db } from "../utils/db.server";
 import { redirect } from "@remix-run/node";
 
+// Retrieving specific post from database
 export const loader = async ({ params }, LoaderFunctionArgs) => {
   const post = await db.post.findUnique({
     where: { id: params.postsId },
@@ -13,6 +14,7 @@ export const loader = async ({ params }, LoaderFunctionArgs) => {
   return data;
 };
 
+// Deleting specific post inside database
 export const action = async ({ request, params }, LoaderFunctionArgs) => {
   const form = await request.formData();
   if (form.get("_method") === "delete") {
