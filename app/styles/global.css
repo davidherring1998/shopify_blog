@@ -81,7 +81,7 @@ p {
 
 .btn {
   display: inline-block;
-  background: var(--dark);
+  background: #6940b7;
   color: var(--light);
   border: none;
   padding: 10px 20px;
@@ -112,6 +112,7 @@ p {
 .btn-block {
   display: block;
   width: 100%;
+  text-align: center;
 }
 
 .btn-delete {
