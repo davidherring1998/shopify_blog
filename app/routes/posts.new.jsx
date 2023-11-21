@@ -9,7 +9,7 @@ function validateTitle(title) {
 }
 
 function validateBody(body) {
-  if (typeof body !== "string" || body.length < 3) {
+  if (typeof body !== "string" || body.length < 10) {
     return "Body should be at least 10 characters long";
   }
 }
@@ -33,8 +33,7 @@ export const action = async ({ request }) => {
   };
 
   if (Object.values(fieldErrors).some(Boolean)) {
-    console.log(fieldErrors);
-    return badRequest({ fieldErrors, fields });
+    return badRequest({ fieldErrors, fields }, { status: 400 });
   }
 
   const post = await db.post.create({ data: fields });

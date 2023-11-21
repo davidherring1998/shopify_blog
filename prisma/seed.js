@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function seed() {
+  // Create new user: password = 'twixrox'
   const bear = await prisma.user.create({
     data: {
-      // password = 'twixrox'
       username: "bear",
       passwordHashed:
         "$2b$10$K7L1OJ45/4Y2nIvhRVpCe.FSmhDdWoXehVzJptJ/op0lSsvqNu/1u",

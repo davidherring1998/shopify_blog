@@ -2,9 +2,10 @@ import { useActionData } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
 import { db } from "../utils/db.server";
 
+// Validation
 function validateUsername(username) {
-  if (typeof username !== "string" || username.length < 8) {
-    return "Username should be at least 8 characters long";
+  if (typeof username !== "string" || username.length < 3) {
+    return "Username should be at least 3 characters long";
   }
 }
 
@@ -19,14 +20,13 @@ function badRequest(data) {
 }
 
 export const action = async ({ request }) => {
+  // Deconstruct data from the form
   const form = await request.formData();
   const loginType = form.get("loginType");
   const username = form.get("username");
   const password = form.get("password");
 
   const fields = { loginType, username, password };
-
-  console.log(fields);
 
   // Validation
   const fieldErrors = {
@@ -35,8 +35,26 @@ export const action = async ({ request }) => {
   };
 
   if (Object.values(fieldErrors).some(Boolean)) {
-    console.log(fieldErrors);
     return badRequest({ fieldErrors, fields });
+  }
+
+  switch (loginType) {
+    case "login": {
+      // Find user
+      // Check user
+      // Create user session
+    }
+    case "register": {
+      // Check for user
+      // Create user
+      // Create user session
+    }
+    default: {
+      return badRequest({
+        fields,
+        formError: "Login type is not valid",
+      });
+    }
   }
 };
 
@@ -50,7 +68,7 @@ export default function Login() {
       </div>
 
       <div className="page-content">
-        <form action="POST">
+        <form method="POST">
           <fieldset>
             <legend>Login or Register</legend>
             <label>
@@ -65,32 +83,57 @@ export default function Login() {
               />
               Login
             </label>
+
             <label>
-              <input type="radio" name="loginType" value="register" /> Register
+              <input
+                type="radio"
+                name="loginType"
+                value="register"
+                defaultChecked={actionData?.fields?.loginType === "register"}
+              />
+              Register
             </label>
           </fieldset>
 
           <div className="form-control">
             <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" />
+            <input
+              type="text"
+              name="username"
+              id="username"
+              defaultValue={actionData?.fields?.username}
+            />
+
             <div className="error">
-              {actionData?.fieldErrors?.username &&
-                actionData?.fieldErrors?.username}
-            </div>
-          </div>
-          <div className="form-control">
-            {" "}
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
-            <div className="error">
-              {actionData?.fieldErrors?.username &&
-                actionData?.fieldErrors?.username}
+              {actionData?.fieldErrors?.username ? (
+                <p className="form-validation-error" id="username-error">
+                  {actionData.fieldErrors.username}
+                </p>
+              ) : null}
             </div>
           </div>
 
-          <div className="btn btn-block" type="submit">
-            Submit
+          <div className="form-control">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              defaultValue={actionData?.fields?.password}
+            />
+
+            <div className="error">
+              {actionData?.fieldErrors?.password ? (
+                <p className="form-validation-error" id="password-error">
+                  {actionData.fieldErrors.password}
+                </p>
+              ) : null}
+            </div>
           </div>
+
+          <button type="submit" className="btn btn-block">
+            Submit
+          </button>
         </form>
       </div>
     </div>

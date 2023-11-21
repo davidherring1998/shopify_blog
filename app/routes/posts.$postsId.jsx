@@ -17,6 +17,7 @@ export const loader = async ({ params }, LoaderFunctionArgs) => {
 // Deleting specific post inside database
 export const action = async ({ request, params }, LoaderFunctionArgs) => {
   const form = await request.formData();
+
   if (form.get("_method") === "delete") {
     const post = await db.post.findUnique({
       where: { id: params.postsId },
@@ -25,6 +26,7 @@ export const action = async ({ request, params }, LoaderFunctionArgs) => {
     if (!post) throw new Error("Post not found");
 
     await db.post.delete({ where: { id: params.postsId } });
+
     return redirect("/posts/index");
   }
 };

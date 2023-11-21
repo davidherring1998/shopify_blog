@@ -15,7 +15,6 @@ export const loader = async () => {
   };
 
   if (!data) {
-    console.log("No database data recieved.");
     throw new Error();
   }
   return data;

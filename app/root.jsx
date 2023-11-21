@@ -78,8 +78,7 @@ export function ErrorBoundary() {
     <Document>
       <Layout />
       <h4>
-        Oh no! An Error has occured, please contact support at
-        support@upsidemicrophones.com
+        Oh no! An Error has occured, please contact support at support@gmail.com
       </h4>
     </Document>
   );
