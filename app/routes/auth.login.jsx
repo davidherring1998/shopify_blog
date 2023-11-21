@@ -1,6 +1,7 @@
 import { useActionData } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
 import { db } from "../utils/db.server";
+import { login, createUserSession } from "../utils/session.server";
 
 // Validation
 function validateUsername(username) {
@@ -10,8 +11,8 @@ function validateUsername(username) {
 }
 
 function validatePassword(password) {
-  if (typeof password !== "string" || password.length < 8) {
-    return "Password should be at least 8 characters long";
+  if (typeof password !== "string" || password.length < 5) {
+    return "Password should be at least 5 characters long";
   }
 }
 
@@ -40,9 +41,17 @@ export const action = async ({ request }) => {
 
   switch (loginType) {
     case "login": {
-      // Find user
-      // Check user
+      // Create user
+      const user = await login({ username, password });
+      // Check for user
+      if (!user) {
+        return badRequest({
+          fields,
+          fieldErrors: { username: "Invalid Credentials" },
+        });
+      }
       // Create user session
+      return createUserSession(user.id, "/posts/index ");
     }
     case "register": {
       // Check for user

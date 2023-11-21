@@ -74,9 +74,34 @@ p {
   text-decoration: none;
 }
 
-.navbar ul li a:hover {
-  color: #333;
-  border-bottom: 1px solid var(--dark);
+.navbar ul li button {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  background: none;
+}
+
+.navbar ul li a:hover,
+.navbar ul li button:hover {
+  color: var(--dark);
+}
+
+@media (max-width: 460px) {
+  .navbar {
+    width: 115vw;
+  }
+}
+@media (max-width: 400px) {
+  .navbar {
+    width: 120vw;
+  }
+}
+@media (max-width: 350px) {
+  .navbar {
+    width: 135vw;
+  }
 }
 
 .btn {
@@ -112,7 +137,7 @@ p {
 .btn-block {
   display: block;
   width: 100%;
-  text-align: center;
+  text-align: centers;
 }
 
 .btn-delete {
@@ -226,7 +251,7 @@ p {
   text-align: end;
 }
 
-/* Homepage /3000 */
+/* Homepage*/
 img {
   max-width: 100%;
 }
@@ -335,7 +360,7 @@ img {
   display: grid;
 }
 
-/* Media Query */
+/* Media Query for Homescreen*/
 @media (max-width: 700px) {
   .top-container {
     grid-template-areas:
@@ -353,7 +378,6 @@ img {
   }
   .homepage-post--list li {
     padding: 3rem;
-    /* margin-right: 4.5%; */
     grid-gap: 0;
   }
   .information--section {
@@ -361,21 +385,5 @@ img {
   }
   .information--section p {
     font-size: 14px;
-  }
-}
-
-@media (max-width: 460px) {
-  .navbar {
-    width: 115vw;
-  }
-}
-@media (max-width: 400px) {
-  .navbar {
-    width: 120vw;
-  }
-}
-@media (max-width: 350px) {
-  .navbar {
-    width: 135vw;
   }
 }
