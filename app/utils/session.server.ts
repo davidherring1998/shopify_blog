@@ -21,7 +21,7 @@ export async function login({ username, password }) {
 }
 
 // Register new user
-export async function Register({ username, password }) {
+export async function register({ username, password }) {
   const passwordHashed = await bcrypt.hash(password, 10);
   return db.user.create({
     data: {

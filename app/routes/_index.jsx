@@ -44,7 +44,7 @@ export default function Home() {
           <div className="top-box top-box--a">
             <h4> Welcome</h4>
             <p className="catch">Join Today! </p>
-            <Link to="/posts/index">
+            <Link to="/auth/signup">
               <button className=" btn btn-block">Sign Up</button>
             </Link>
           </div>
@@ -52,9 +52,9 @@ export default function Home() {
           <div className="top-box top-box--b">
             <h4>Shopify Crafters</h4>
             <p className="catch">Learn More! </p>
-            <Link to="/posts/index">
-              <button className="btn btn-block">About Us</button>
-            </Link>
+            <a href="#about">
+              <button className="btn btn-block">About Us</button>{" "}
+            </a>
           </div>
         </section>
 
@@ -95,7 +95,7 @@ export default function Home() {
         </section>
 
         {/* About us section */}
-        <section className="information--section">
+        <section className="information--section" id="about">
           <img
             src={image}
             alt="About us banner showing the language stack of Shopify."
@@ -117,7 +117,7 @@ export default function Home() {
               and features in the Shopify ecosystem, our blog is tailored to
               suit your needs.
             </p>
-            <Link to="/posts/index">
+            <Link to="/auth/signup">
               <button className="btn btn-block">Sign Up</button>
             </Link>
           </div>

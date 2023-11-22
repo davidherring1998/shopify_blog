@@ -1,17 +1,18 @@
 import { useActionData, Form } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
-import { login, createUserSession } from "../utils/session.server";
+import { db } from "../utils/db.server";
+import { register, createUserSession } from "../utils/session.server";
 
 // Error handling
 function validateUsername(username) {
   if (typeof username !== "string" || username.length < 3) {
-    return "Username must be at least 3 characters long";
+    return "Username must be atleast 3 characters long";
   }
 }
 
 function validatePassword(password) {
   if (typeof password !== "string" || password.length < 5) {
-    return "Password must be at least 5 characters long";
+    return "Password must be atleast 5 characters long";
   }
 }
 
@@ -20,11 +21,15 @@ function badRequest(data) {
 }
 
 export const action = async ({ request }) => {
+  // Deconstruct
   const form = await request.formData();
   const username = form.get("username");
   const password = form.get("password");
 
-  const fields = { username, password };
+  const fields = {
+    username,
+    password,
+  };
 
   // Validation
   const fieldErrors = {
@@ -33,27 +38,42 @@ export const action = async ({ request }) => {
   };
 
   if (Object.values(fieldErrors).some(Boolean)) {
-    return badRequest({ fieldErrors, fields });
+    return badRequest({ fields, fieldErrors });
   }
 
-  const user = await login({ username, password });
-  if (!user) {
+  const existingUser = await db.user.findFirst({
+    where: {
+      username,
+    },
+  });
+
+  if (existingUser) {
     return badRequest({
       fields,
-      fieldErrors: { username: "Invalid Credentials" },
+      fieldErrors: { username: ` ${username} already exist` },
     });
   }
 
-  return createUserSession(user.id, "/posts/index ");
+  const newUser = await register({ username, password });
+  if (!newUser) {
+    return badRequest({
+      fields,
+      fieldErrors: "Something went wrong",
+    });
+  } else {
+    console.log(newUser.username);
+  }
+
+  return createUserSession(newUser.id, "/posts/index");
 };
 
-export default function Logins() {
+export default function Signup() {
   const actionData = useActionData();
 
   return (
     <div className="auth-container">
       <div className="page-header">
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
       </div>
 
       <div className="page-content">
@@ -74,29 +94,29 @@ export default function Logins() {
                 </p>
               ) : null}
             </div>
-
-            <div className="form-control">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                defaultValue={actionData?.fields?.password}
-              />
-
-              <div className="error">
-                {actionData?.fieldErrors?.password ? (
-                  <p className="form-validation-error" id="password-error">
-                    {actionData.fieldErrors.password}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
           </div>
+
+          <div className="form-control">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              defaultValue={actionData?.fields?.password}
+            />
+
+            <div className="error">
+              {actionData?.fieldErrors?.password ? (
+                <p className="form-validation-error" id="password-error">
+                  {actionData.fieldErrors.password}
+                </p>
+              ) : null}
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-block">
+            Submit
+          </button>
         </Form>
       </div>
     </div>
