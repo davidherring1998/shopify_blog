@@ -1,5 +1,5 @@
-import { useActionData, Form } from "@remix-run/react";
-import { redirect, json } from "@remix-run/node";
+import { useActionData, Form, Link } from "@remix-run/react";
+import { json } from "@remix-run/node";
 import { login, createUserSession } from "../utils/session.server";
 
 // Error handling
@@ -98,6 +98,12 @@ export default function Logins() {
             </button>
           </div>
         </Form>
+        <div className="signup-form">
+          <Link to="/auth/signup">
+            <p className="signup-link--header">Don't have an account? </p>
+            <p className="signup-link"> Sign Up </p>
+          </Link>
+        </div>
       </div>
     </div>
   );

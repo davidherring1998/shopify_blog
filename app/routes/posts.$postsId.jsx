@@ -40,6 +40,7 @@ export const action = async ({ request, params }, LoaderFunctionArgs) => {
 
 export default function Post() {
   const { post, user } = useLoaderData();
+
   return (
     <div>
       <div className="page-header">
@@ -48,10 +49,12 @@ export default function Post() {
           Back
         </Link>
       </div>
+
       <div className="page-content">
         <p className="dates">{new Date(post.createdAt).toLocaleDateString()}</p>
         <p>{post.body}</p>
       </div>
+
       <div className="page-footer">
         {user.id === post.userId && (
           <form method="POST">

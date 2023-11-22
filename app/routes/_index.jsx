@@ -4,14 +4,17 @@ import { FaShopify, FaUserFriends } from "react-icons/fa/index.js";
 import { IoNewspaperOutline } from "react-icons/io5/index.js";
 import { SiRemix } from "react-icons/si/index.js";
 import image from "../../public/webstack-hero.jpg";
+import { getUser } from "../utils/session.server";
 
 // Getting post from database
-export const loader = async () => {
+export const loader = async ({ request }) => {
+  const user = await getUser(request);
   const data = {
     posts: await db.post.findMany({
       orderBy: { createdAt: "desc" },
       take: 8,
     }),
+    user,
   };
 
   if (!data) {
@@ -21,10 +24,9 @@ export const loader = async () => {
 };
 
 export default function Home() {
-  const { posts } = useLoaderData();
+  const { posts, user } = useLoaderData();
   return (
     <>
-      {/* Banner hero section */}
       <div className="wrapper">
         <section className="top-container">
           <header className="showcase">
@@ -40,7 +42,6 @@ export default function Home() {
             </Link>
           </header>
 
-          {/* Sign up & Learn more section */}
           <div className="top-box top-box--a">
             <h4> Welcome</h4>
             <p className="catch">Join Today! </p>
@@ -58,7 +59,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What we do box section */}
         <section className="boxes">
           <div className="box">
             <SiRemix size={50} />
@@ -94,8 +94,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About us section */}
-        <section className="information--section" id="about">
+        <section className="information-section" id="about">
           <img
             src={image}
             alt="About us banner showing the language stack of Shopify."
@@ -123,13 +122,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Post list section */}
         <ul className="posts-list homepage-post--list">
           {posts.map((post) => (
             <li key={post.id}>
-              <Link to={`/posts/${post.id}`}>
-                <h2>{post.title}</h2>
-              </Link>
+              {!user ? (
+                <>
+                  <Link to={`/auth/login`}>
+                    <h2>{post.title}</h2>
+                  </Link>
+                </>
+              ) : (
+                <Link to={`/posts/${post.id}`}>
+                  <h2>{post.title}</h2>
+                </Link>
+              )}
               <p className="dates">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
@@ -137,7 +143,7 @@ export default function Home() {
           ))}
         </ul>
         <Link to="/posts/index">
-          <button className="btn btn-block homepage-btn">More</button>
+          <button className="btn btn-block btn-homepage">More</button>
         </Link>
       </div>
     </>

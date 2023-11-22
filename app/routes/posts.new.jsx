@@ -54,6 +54,7 @@ export default function NewPost() {
           Back
         </Link>
       </div>
+
       <div className="page-content">
         <Form method="POST">
           <div className="form-control">
@@ -72,6 +73,7 @@ export default function NewPost() {
               </p>
             </div>
           </div>
+
           <div className="form-control">
             <label htmlFor="body">Body</label>
             <textarea
@@ -80,6 +82,7 @@ export default function NewPost() {
               defaultValue={actionData?.fields?.body}
             />
           </div>
+
           <p>
             {actionData?.fieldErrors?.body
               ? actionData?.fieldErrors?.body

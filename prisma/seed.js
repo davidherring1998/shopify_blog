@@ -27,10 +27,14 @@ function getPosts() {
     {
       title: "Mastering Shopify Theme Customization",
       body: "Discover the secrets to effectively customizing Shopify themes. This guide provides step-by-step instructions on how to tweak and tailor your Shopify store’s theme to perfectly match your brand’s aesthetic and functional needs, using both Liquid and Shopify’s theme settings.",
+      // excerpt:
+        // "Discover the secrets to effectively customizing Shopify themes.",
     },
     {
       title: "Optimizing Your Shopify Store for SEO",
       body: "Unlock the potential of your Shopify store with proven SEO strategies. This article explores how to optimize your Shopify site for search engines, covering everything from keyword integration in product descriptions to leveraging Shopify’s built-in SEO tools for maximum visibility.",
+      // excerpt:
+        // "Unlock the potential of your Shopify store with proven SEO strategies.",
     },
     {
       title: "Enhancing Shopify Store Performance",
