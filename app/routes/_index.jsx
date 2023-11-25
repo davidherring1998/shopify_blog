@@ -139,6 +139,10 @@ export default function Home() {
               <p className="dates">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
+              <p className="excerpt">{post.excerpt}</p>
+              <Link to={`/posts/${post.id}`}>
+                <button className="btn btn-block post-btn">Read</button>
+              </Link>
             </li>
           ))}
         </ul>

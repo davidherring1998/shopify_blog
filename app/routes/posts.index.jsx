@@ -15,8 +15,7 @@ export const loader = async ({ request }) => {
   return data;
 };
 
-
-// Added conditions to control post view and create by non-members 
+// Added conditions to control post view and create by non-members
 export default function PostItems() {
   const { posts, user } = useLoaderData();
   return (
@@ -35,7 +34,7 @@ export default function PostItems() {
       )}
 
       <div>
-        <ul className="posts-list indexpage-post--list">
+        <ul className="posts-list indexpage-post--list homepage-post--list">
           {posts.map((post) => (
             <li key={post.id}>
               {!user ? (
@@ -52,6 +51,10 @@ export default function PostItems() {
               <p className="dates">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
+              <p className="excerpt">{post.excerpt}</p>
+              <Link to={`/posts/${post.id}`}>
+                <button className="btn btn-block post-btn">Read</button>
+              </Link>
             </li>
           ))}
         </ul>

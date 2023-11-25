@@ -91,6 +91,14 @@ p {
   padding: 0.6rem 1.3rem;
 }
 
+.post-btn {
+  padding: 5px;
+  width: 50%;
+  margin: 20px auto;
+  background-color: rgba(44, 44, 44, 0.8);
+  color: var(--light);
+}
+
 .signup-link--header {
   margin-top: 20px;
   text-align: center;
@@ -196,6 +204,10 @@ p {
   height: 200px;
 }
 
+.excerpt-control textarea {
+  height: 75px;
+}
+
 .form-control-check {
   display: flex;
   align-items: center;
@@ -222,7 +234,7 @@ p {
 .posts-list li {
   padding: 20px;
   border: 1px var(--dark) solid;
-  height: 250px;
+  height: 300px;
 }
 
 .posts-list li h3 {
@@ -231,6 +243,14 @@ p {
 
 .homepage-post--list {
   margin-top: 30px;
+}
+
+.homepage-post--list li {
+  display: grid;
+  grid-gap: 20px;
+  background-color: var(--primary);
+  border: none;
+  display: grid;
 }
 
 .error {
@@ -263,7 +283,11 @@ p {
   color: var(--dark);
   font-size: 13px;
   font-family: monospace;
-  text-align: end;
+}
+@media screen and (max-width: 555px) {
+  .dates {
+    text-align: start;
+  }
 }
 
 /* Homepage*/
@@ -363,17 +387,6 @@ img {
   grid-template-columns: repeat(2, 1fr);
   padding: 3rem;
   margin-bottom: -30px;
-}
-
-.homepage-post--list li,
-.indexpage-post--list li {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  background-color: var(--primary);
-  padding: 1.5rem 2rem;
-  border: none;
-  display: grid;
 }
 
 /* Media Query for Homescreen*/

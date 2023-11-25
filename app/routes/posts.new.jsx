@@ -15,6 +15,14 @@ function validateBody(body) {
   }
 }
 
+function validateExcerpt(excerpt) {
+  if (typeof excerpt !== "string" || excerpt.length < 60) {
+    return `Excerpt should be at least 60 characters long. Your inputed length is ${excerpt.length}.`;
+  } else if (excerpt.length > 70) {
+    return `Excerpt should not be longer that 70 characters long. Your inputed length is ${excerpt.length}.`;
+  }
+}
+
 function badRequest(data) {
   return json(data, { status: 400 });
 }
@@ -24,14 +32,16 @@ export const action = async ({ request }) => {
   const form = await request.formData();
   const title = form.get("title");
   const body = form.get("body");
+  const excerpt = form.get("excerpt");
   const user = await getUser(request);
 
-  const fields = { title, body };
+  const fields = { title, body, excerpt };
 
   // Validation
   const fieldErrors = {
     title: validateTitle(title),
     body: validateBody(body),
+    excerpt: validateExcerpt(excerpt),
   };
 
   if (Object.values(fieldErrors).some(Boolean)) {
@@ -57,7 +67,9 @@ export default function NewPost() {
 
       <div className="page-content">
         <Form method="POST">
-          <div className="form-control">
+          {/* <input type="image" name="image" alt="Remix Icon" src={<SiRemix />} /> */}
+
+          <div className="form-control title-control">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -74,20 +86,38 @@ export default function NewPost() {
             </div>
           </div>
 
-          <div className="form-control">
+          <div className="form-control body-control">
             <label htmlFor="body">Body</label>
             <textarea
               name="body"
               id="body"
               defaultValue={actionData?.fields?.body}
             />
+            <div className="error">
+              <p>
+                {actionData?.fieldErrors?.body
+                  ? actionData?.fieldErrors?.body
+                  : null}
+              </p>
+            </div>
           </div>
 
-          <p>
-            {actionData?.fieldErrors?.body
-              ? actionData?.fieldErrors?.body
-              : null}
-          </p>
+          <div className="form-control excerpt-control">
+            <label htmlFor="excerpt">Excrept</label>
+            <textarea
+              name="excerpt"
+              id="excerpt"
+              defaultValue={actionData?.fields?.excerpt}
+            />
+            <div className="error">
+              <p>
+                {actionData?.fieldErrors?.excerpt
+                  ? actionData?.fieldErrors?.excerpt
+                  : null}
+              </p>
+            </div>
+          </div>
+
           <button type="submit" className="btn btn-block">
             Submit
           </button>
@@ -96,3 +126,7 @@ export default function NewPost() {
     </>
   );
 }
+
+// Add 4 images to choose from
+// Add 4 colors to make image Icon
+// POST image choice to database
