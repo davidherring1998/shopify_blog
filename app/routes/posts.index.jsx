@@ -48,10 +48,13 @@ export default function PostItems() {
                   <h2>{post.title}</h2>
                 </Link>
               )}
+
               <p className="dates">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
+
               <p className="excerpt">{post.excerpt}</p>
+
               {!user ? (
                 <>
                   <Link to={`/auth/login`}>

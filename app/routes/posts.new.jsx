@@ -126,7 +126,3 @@ export default function NewPost() {
     </>
   );
 }
-
-// Add 4 images to choose from
-// Add 4 colors to make image Icon
-// POST image choice to database
