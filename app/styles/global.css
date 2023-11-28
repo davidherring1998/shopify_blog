@@ -110,6 +110,10 @@ p {
   color: #6940b7;
 }
 
+.post-link {
+  color: #6940b7;
+}
+
 /* Nav */
 .logo {
   font-size: large;
@@ -390,6 +394,16 @@ img {
 }
 
 /* Media Query for Homescreen*/
+@media (max-width: 1000px) {
+  .information-section {
+    grid-template-columns: repeat(1, 1fr);
+    text-align: center;
+  }
+  .information-section p {
+    margin-bottom: 20px;
+  }
+}
+
 @media (max-width: 700px) {
   .top-container {
     grid-template-areas:
@@ -409,7 +423,7 @@ img {
     padding: 3rem;
     grid-gap: 0;
   }
-  .information-section {
+  .imargin-bottom: 20px;rmation-section {
     grid-template-columns: repeat(1, 1fr);
   }
   .information-section p {

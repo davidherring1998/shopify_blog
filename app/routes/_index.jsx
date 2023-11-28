@@ -136,18 +136,29 @@ export default function Home() {
                   <h2>{post.title}</h2>
                 </Link>
               )}
+
               <p className="dates">
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
+
               <p className="excerpt">{post.excerpt}</p>
-              <Link to={`/posts/${post.id}`}>
-                <button className="btn btn-block post-btn">Read</button>
-              </Link>
+
+              {!user ? (
+                <>
+                  <Link to={`/auth/login`}>
+                    <p className="post-link">More...</p>
+                  </Link>
+                </>
+              ) : (
+                <Link to={`/posts/${post.id}`}>
+                  <p className="post-link">More...</p>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
         <Link to="/posts/index">
-          <button className="btn btn-block btn-homepage">More</button>
+          <button className="btn btn-block btn-homepage">Post</button>
         </Link>
       </div>
     </>

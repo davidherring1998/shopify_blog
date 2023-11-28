@@ -52,9 +52,17 @@ export default function PostItems() {
                 {new Date(post.createdAt).toLocaleDateString()}
               </p>
               <p className="excerpt">{post.excerpt}</p>
-              <Link to={`/posts/${post.id}`}>
-                <button className="btn btn-block post-btn">Read</button>
-              </Link>
+              {!user ? (
+                <>
+                  <Link to={`/auth/login`}>
+                    <p className="post-link">More...</p>
+                  </Link>
+                </>
+              ) : (
+                <Link to={`/posts/${post.id}`}>
+                  <p className="post-link">More...</p>
+                </Link>
+              )}
             </li>
           ))}
         </ul>
