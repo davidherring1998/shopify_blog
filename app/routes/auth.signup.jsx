@@ -72,7 +72,7 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
-      <div className="page-header">
+      <div className="page-header header-signup">
         <h1>Sign Up</h1>
       </div>
 

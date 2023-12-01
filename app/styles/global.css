@@ -30,12 +30,11 @@ ul {
 }
 
 p {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .container {
   width: 100%;
-  /* max-width: 2000px; */
   margin: 0;
   padding: 0 30px;
 }
@@ -85,6 +84,17 @@ p {
   padding: 5px 10px;
 }
 
+#btn-logout {
+  display: inline-block;
+  border: none;
+  font-family: inherit;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .hero-image--btn {
   background-color: var(--light);
   color: #000;
@@ -112,6 +122,7 @@ p {
 
 .post-link {
   color: #6940b7;
+  padding-bottom: 10px;
 }
 
 /* Nav */
@@ -179,12 +190,68 @@ p {
   }
 }
 
+/* Footer */
+footer {
+  display: grid;
+  width: 100%;
+  bottom: 0;
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(44, 44, 44, 0.3);
+}
+
+.top-footer--container {
+  display: grid;
+  margin: 0 50px;
+  grid-template-areas: "about quicklinks quicklinkstwo contact";
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 880px) {
+  .top-footer--container {
+    display: none;
+  }
+}
+
+.footer-about {
+  grid-area: about;
+  padding: 20px;
+}
+
+.footer-contact {
+  grid-area: contact;
+  padding: 20px;
+}
+
+.footer-quicklinks {
+  grid-area: quicklinks;
+  padding: 20px;
+}
+
+.footer-quicklinks--two {
+  grid-area: quicklinkstwo;
+  padding: 20px;
+}
+
+.bottom-footer--container {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
 /* Forms */
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+}
+
+.header-login,
+.header-signup {
+  margin-top: 20%;
 }
 
 .form-control {
@@ -227,21 +294,24 @@ p {
   height: 20px;
 }
 
+/* Post */
 .posts-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   gap: 20px;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 .posts-list li {
   padding: 20px;
   border: 1px var(--dark) solid;
-  height: 300px;
+  height: 235px;
 }
 
-.posts-list li h3 {
+.posts-list li a h2 {
+  /* margin-top: -15px; */
   margin-bottom: 5px;
 }
 
@@ -251,7 +321,7 @@ p {
 
 .homepage-post--list li {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 2px;
   background-color: var(--primary);
   border: none;
   display: grid;
@@ -420,7 +490,7 @@ img {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
   .homepage-post--list li {
-    padding: 3rem;
+    padding: 1rem;
     grid-gap: 0;
   }
   .information-section {

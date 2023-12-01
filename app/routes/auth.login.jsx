@@ -52,7 +52,7 @@ export default function Logins() {
 
   return (
     <div className="auth-container">
-      <div className="page-header">
+      <div className="page-header header-login">
         <h1>Login</h1>
       </div>
 
