@@ -70,13 +70,16 @@ function Layout({ children }) {
         </Link>
         <ul className="nav">
           <li>
-            <Link to="/posts/index">Blogs</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/posts/new">Create</Link>
+            <Link to="/posts/index">Blogs</Link>
           </li>
           {user ? (
             <ul className="nav">
+              <li>
+                <Link to="/posts/new">Create</Link>
+              </li>
               <li>
                 <form action="/auth/logout" method="POST">
                   <button type="submit" id="btn-logout">
@@ -94,71 +97,6 @@ function Layout({ children }) {
       </nav>
 
       <div className="container">{children}</div>
-
-      {/* <footer>
-        <div className="top-footer--container">
-          <div className="footer-about">
-            <a href="/" className="logo">
-              SHOPIFY CRAFTERS
-            </a>
-            <p>
-              We're a team of passionate Shopify enthusiasts dedicated to
-              empowering online merchants with the latest trends, tips, and best
-              practices in Shopify design and development.
-            </p>
-          </div>
-
-          <div className="footer-quicklinks">
-            <a href="/" className="logo">
-              QUICKLINKS
-            </a>
-            <p>
-              <Link to="/auth/signup">Signup</Link>
-            </p>
-            <p>
-              <Link to="/auth/login">Login</Link>
-            </p>
-            <p>
-              <Link to="/posts/index">Blogs</Link>
-            </p>
-            <p>
-              <Link to="/">About</Link>
-            </p>
-          </div>
-
-          <div className="footer-quicklinks--two">
-            <a href="/" className="logo">
-              SOCIAL
-            </a>
-            <p>
-              <Link to="/auth/signup">Facebook</Link>
-            </p>
-            <p>
-              <Link to="/auth/login">Instagram</Link>
-            </p>
-            <p>
-              <Link to="/posts/index">Twitter</Link>
-            </p>
-            <p>
-              <Link to="/">Youtube</Link>
-            </p>
-          </div>
-
-          <div className="footer-contact">
-            <a href="/" className="logo">
-              CONTACT
-            </a>
-            <p>(615)-707-1267</p>
-            <p>David.1998.Herrings@gmail.com</p>
-            <p>318 Jays Circle Woodbury, TN</p>
-            <p>www.UpsideMicrophones.com</p>
-          </div>
-        </div>
-
-        <div className="bottom-footer--container">
-          <p>&copy; 2023 Shopify Crafters </p>
-        </div>
-      </footer> */}
     </>
   );
 }

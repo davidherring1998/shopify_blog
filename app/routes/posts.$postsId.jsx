@@ -51,8 +51,10 @@ export default function Post() {
       </div>
 
       <div className="page-content">
-        <p className="dates">{new Date(post.createdAt).toLocaleDateString()}</p>
-        <p className="post-excerpt">{post.excerpt}</p>
+        <p className="dates dates-post">
+          {new Date(post.createdAt).toLocaleDateString()}
+        </p>
+        <p className="post-excerpt post-excerpt--post">{post.excerpt}</p>
         <p className="post-body">{post.body}</p>
       </div>
 

@@ -20,19 +20,16 @@ export default function PostItems() {
   const { posts, user } = useLoaderData();
   return (
     <>
-      {!user ? (
-        <div className="page-header">
-          <h1>Posts</h1>
-        </div>
-      ) : (
-        <div className="page-header">
-          <h1>Posts</h1>
+      <div className="page-header">
+        <h1>Blogs</h1>
+        {!user ? (
+          ""
+        ) : (
           <Link to="/posts/new" className="btn">
             Create
           </Link>
-        </div>
-      )}
-
+        )}
+      </div>
       <div>
         <ul className="posts-list indexpage-post--list homepage-post--list">
           {posts.map((post) => (
