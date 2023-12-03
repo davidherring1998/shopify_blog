@@ -221,7 +221,6 @@ export default function Home() {
             <p>www.UpsideMicrophones.com</p>
           </div>
         </div>
-
         <div className="bottom-footer--container">
           <p>&copy; 2023 Shopify Crafters </p>
         </div>
